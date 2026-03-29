@@ -150,7 +150,7 @@ export default function Hero() {
             await wait(200);
           }
 
-          /* beat 4 — reveal */
+          /* beat 4 — hold */
           await wait(400);
           setHeadline(true);
           await wait(HOLD_MS);
@@ -243,13 +243,40 @@ export default function Hero() {
 
   /* ── layout ───────────────────────────────────────────── */
   return (
-    <section className="relative min-h-screen flex items-center bg-bg overflow-hidden pt-20">
+    <section className="relative min-h-screen bg-bg overflow-hidden pt-20">
       <h1 className="sr-only">
         Admit Max — AI-Powered College Essay Coaching
       </h1>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(212,168,83,0.04),transparent_60%)] pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-6 w-full">
+      <div className="relative max-w-7xl mx-auto px-6 w-full py-14 md:py-20">
+        {/* Static heading — always visible */}
+        <div className="text-center mb-14 md:mb-16">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-5">
+            Admit <span className="text-gold">Max</span>
+          </h2>
+          <p className="text-text-muted text-lg md:text-xl mb-8 max-w-xl mx-auto leading-relaxed">
+            Built by Harvard students. Powered by 100+ real T20 interviews.
+          </p>
+          <a
+            href="#cta"
+            className="inline-block bg-gold hover:bg-gold-hover text-bg px-8 py-4 rounded-xl font-semibold text-base transition-colors mb-6"
+          >
+            Score My Essay — Free
+          </a>
+          {/* Trust strip */}
+          <div className="flex items-center justify-center gap-2 md:gap-3 text-xs text-text-muted flex-wrap">
+            <span>100+ interviews</span>
+            <span className="text-gold">·</span>
+            <span>23 T20 schools</span>
+            <span className="text-gold">·</span>
+            <span>Built at Harvard</span>
+            <span className="text-gold">·</span>
+            <span>Essays never stored</span>
+          </div>
+        </div>
+
+        {/* Demo panels */}
         <div className="flex flex-col lg:flex-row items-start gap-10 lg:gap-16">
           {/* essay panel */}
           <div className="w-full lg:w-[62%]">
@@ -339,27 +366,6 @@ export default function Hero() {
                 </span>
               </div>
             </div>
-
-            {/* headline + CTA below card */}
-            {headline && (
-              <div className="mt-8 animate-fadeIn text-center lg:text-left">
-                <p className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.1] tracking-tight">
-                  Your essay.
-                  <br />
-                  <span className="text-gold">Perfected.</span>
-                </p>
-                <p className="text-text-muted text-sm md:text-base mt-4 max-w-sm leading-relaxed">
-                  Built by Harvard students. Powered by 100+ real T20
-                  interviews.
-                </p>
-                <a
-                  href="#cta"
-                  className="inline-block mt-6 bg-gold hover:bg-gold-hover text-bg px-8 py-4 rounded-xl font-semibold text-base transition-colors"
-                >
-                  Score My Essay — Free
-                </a>
-              </div>
-            )}
           </div>
         </div>
       </div>

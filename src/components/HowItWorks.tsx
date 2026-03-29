@@ -1,7 +1,3 @@
-'use client';
-
-import { motion } from 'motion/react';
-
 const STEPS = [
   {
     num: '01',
@@ -22,35 +18,33 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 md:py-32 bg-bg-alt">
-      <div className="max-w-5xl mx-auto px-6">
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-16"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          How It Works
-        </motion.h2>
+    <section id="how-it-works" className="py-16 md:py-24 bg-bg-alt">
+      <div className="max-w-3xl mx-auto px-6">
+        <h2 className="text-3xl md:text-4xl font-bold mb-14">
+          Three steps. That&apos;s it.
+        </h2>
 
-        <div className="grid md:grid-cols-3 gap-10 md:gap-12">
-          {STEPS.map((step, i) => (
-            <motion.div
-              key={step.num}
-              className="text-center md:text-left"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.15 }}
-            >
-              <div className="text-5xl font-bold text-gold/20 mb-4">
-                {step.num}
+        <div className="relative">
+          {/* Vertical connecting line */}
+          <div className="absolute left-[2.75rem] top-5 bottom-5 w-px bg-gold/15 hidden sm:block" />
+
+          <div className="space-y-12">
+            {STEPS.map((step) => (
+              <div key={step.num} className="flex items-start gap-8 sm:gap-12">
+                {/* Left: large number */}
+                <div className="flex-shrink-0 w-20 sm:w-24 flex justify-center">
+                  <span className="text-6xl sm:text-7xl font-bold text-gold/20 leading-none tabular-nums">
+                    {step.num}
+                  </span>
+                </div>
+                {/* Right: content */}
+                <div className="pt-2 pb-2">
+                  <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                  <p className="text-text-muted leading-relaxed">{step.desc}</p>
+                </div>
               </div>
-              <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
-              <p className="text-text-muted leading-relaxed">{step.desc}</p>
-            </motion.div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

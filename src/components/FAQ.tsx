@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 
 const FAQS = [
   {
@@ -10,7 +10,7 @@ const FAQS = [
   },
   {
     q: 'What schools are covered?',
-    a: "Our rubrics are built from interviews with students admitted to 20+ top universities including Harvard, Stanford, MIT, Yale, Princeton, and more. We also offer school-specific rubrics that account for each school's unique values and essay prompts.",
+    a: "Our rubrics are built from interviews with students admitted to 23 top universities including Harvard, Stanford, MIT, Yale, Princeton, and more. We also offer school-specific rubrics that account for each school's unique values and essay prompts.",
   },
   {
     q: 'Is my essay data private?',
@@ -34,68 +34,75 @@ export default function FAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-24 md:py-32 bg-bg">
-      <div className="max-w-3xl mx-auto px-6">
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-14"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          Frequently Asked Questions
-        </motion.h2>
+    <section id="faq" className="py-14 md:py-20 bg-bg">
+      <div className="max-w-5xl mx-auto px-6">
+        <h2 className="text-3xl md:text-4xl font-bold mb-14">
+          You&apos;re probably wondering...
+        </h2>
 
-        <div className="space-y-3">
-          {FAQS.map((faq, i) => (
-            <motion.div
-              key={i}
-              className="border border-white/[0.06] rounded-xl overflow-hidden"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-            >
-              <button
-                className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-white/[0.02] transition-colors"
-                onClick={() => setOpenIdx(openIdx === i ? null : i)}
+        <div className="flex flex-col md:flex-row gap-10 items-start">
+          {/* Questions — 70% */}
+          <div className="flex-1 space-y-3">
+            {FAQS.map((faq, i) => (
+              <div
+                key={i}
+                className="border border-white/[0.06] rounded-xl overflow-hidden"
               >
-                <span className="font-medium text-sm md:text-base pr-4">
-                  {faq.q}
-                </span>
-                <svg
-                  className={`w-5 h-5 text-text-muted flex-shrink-0 transition-transform duration-200 ${
-                    openIdx === i ? 'rotate-180' : ''
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
+                <button
+                  className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-white/[0.02] transition-colors"
+                  onClick={() => setOpenIdx(openIdx === i ? null : i)}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-              <AnimatePresence>
-                {openIdx === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="overflow-hidden"
+                  <span className="font-medium text-sm md:text-base pr-4">
+                    {faq.q}
+                  </span>
+                  <svg
+                    className={`w-5 h-5 text-text-muted flex-shrink-0 transition-transform duration-200 ${
+                      openIdx === i ? 'rotate-180' : ''
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
                   >
-                    <div className="px-6 pb-5 text-sm text-text-muted leading-relaxed">
-                      {faq.a}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+                <AnimatePresence>
+                  {openIdx === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-5 text-sm text-text-muted leading-relaxed">
+                        {faq.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </div>
+
+          {/* Sidebar — 30% */}
+          <div className="md:sticky md:top-24 w-full md:w-72 flex-shrink-0 border border-gold/20 rounded-2xl p-6 bg-bg-alt/40">
+            <h3 className="font-semibold text-base mb-2">Still have questions?</h3>
+            <p className="text-text-muted text-sm leading-relaxed">
+              Email us at{' '}
+              <a
+                href="mailto:hello@admitmax.com"
+                className="text-gold hover:text-gold-hover transition-colors"
+              >
+                hello@admitmax.com
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </section>

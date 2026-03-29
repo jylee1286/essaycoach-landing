@@ -6,7 +6,7 @@ export default function FooterCTA() {
   return (
     <>
       {/* Final CTA */}
-      <section id="cta" className="py-24 md:py-32 bg-bg">
+      <section id="cta" className="py-20 md:py-28 bg-bg">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <motion.h2
             className="text-4xl md:text-5xl font-bold mb-6"

@@ -48,7 +48,7 @@ export default function BeforeAfter() {
   );
 
   return (
-    <section className="py-24 md:py-32 bg-bg">
+    <section className="py-20 md:py-28 bg-bg">
       <div className="max-w-5xl mx-auto px-6">
         <motion.h2
           className="text-3xl md:text-4xl font-bold text-center mb-4"
@@ -56,7 +56,7 @@ export default function BeforeAfter() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          See the Difference
+          See the difference.
         </motion.h2>
         <motion.p
           className="text-text-muted text-center mb-12 max-w-lg mx-auto"
@@ -65,21 +65,21 @@ export default function BeforeAfter() {
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
         >
-          Drag the slider to compare before and after.
+          Drag to compare.
         </motion.p>
 
         <motion.div
           ref={containerRef}
-          className="relative bg-bg-alt border border-white/[0.06] rounded-2xl overflow-hidden select-none touch-none"
+          className="relative border border-white/[0.06] rounded-2xl overflow-hidden select-none touch-none"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
-          <div className="flex" style={{ minHeight: 300 }}>
+          <div className="flex" style={{ minHeight: 320 }}>
             {/* Before */}
             <div
-              className="overflow-hidden flex-shrink-0"
+              className="overflow-hidden flex-shrink-0 bg-[#0a0e16]"
               style={{ width: `${pos}%` }}
             >
               <div className="p-6 md:p-8" style={{ minWidth: 340 }}>
@@ -87,9 +87,9 @@ export default function BeforeAfter() {
                   <span className="text-xs font-semibold uppercase tracking-wider text-weak">
                     Before
                   </span>
-                  <span className="text-sm font-bold text-weak">62 / 100</span>
+                  <span className="text-4xl font-bold text-weak">62</span>
                 </div>
-                <p className="text-sm leading-relaxed text-text/70">
+                <p className="text-base leading-relaxed text-text/70">
                   {BEFORE.map((s, i) =>
                     s.type === 'weak' ? (
                       <span
@@ -137,15 +137,15 @@ export default function BeforeAfter() {
             </div>
 
             {/* After */}
-            <div className="overflow-hidden flex-1">
+            <div className="overflow-hidden flex-1 bg-bg-alt">
               <div className="p-6 md:p-8" style={{ minWidth: 340 }}>
                 <div className="flex items-center justify-between mb-5">
                   <span className="text-xs font-semibold uppercase tracking-wider text-gold">
                     After
                   </span>
-                  <span className="text-sm font-bold text-gold">91 / 100</span>
+                  <span className="text-4xl font-bold text-gold">91</span>
                 </div>
-                <p className="text-sm leading-relaxed text-text/70">
+                <p className="text-base leading-relaxed text-text/70">
                   {AFTER.map((s, i) =>
                     s.type === 'strong' ? (
                       <span key={i} className="text-gold bg-gold/5">
