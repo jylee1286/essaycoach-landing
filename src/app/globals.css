@@ -8,7 +8,9 @@
   --color-gold: #D4A853;
   --color-gold-hover: #E5BD6A;
   --color-weak: #E85D5D;
-  --font-sans: var(--font-dm-sans, 'DM Sans'), system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-inter, 'Inter'), system-ui, -apple-system, sans-serif;
+  --color-cta: #D4A853;
+  --color-cta-hover: #E5BD6A;
   --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
 }
 

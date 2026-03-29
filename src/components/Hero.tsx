@@ -266,46 +266,95 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* score + headline */}
-          <div className="w-full lg:w-[38%] flex flex-col items-center lg:items-start justify-center lg:pt-8 min-h-[260px]">
+          {/* score card panel */}
+          <div className="w-full lg:w-[38%] flex flex-col items-stretch justify-start lg:pt-0 min-h-[260px]">
             <div
-              className={`transition-all duration-500 ${
+              className={`bg-bg-alt/60 border border-white/[0.06] rounded-2xl p-6 md:p-8 shadow-2xl shadow-black/20 transition-all duration-500 ${
                 scoreOn
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-6'
               }`}
             >
-              <div className="text-xs text-text-muted tracking-[0.2em] uppercase mb-3">
-                Essay Score
+              {/* header */}
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/[0.06]">
+                <span className="text-xs text-text-muted tracking-[0.2em] uppercase font-medium">Score Breakdown</span>
+                <div className="flex items-baseline gap-1.5">
+                  <span
+                    className={`text-4xl md:text-5xl font-bold tabular-nums transition-colors duration-500 ${
+                      score >= 80 ? 'text-gold' : 'text-weak'
+                    }`}
+                  >
+                    {score}
+                  </span>
+                  <span className="text-base text-text-muted font-light">
+                    / 100
+                  </span>
+                </div>
               </div>
-              <div className="flex items-baseline gap-2">
-                <span
-                  className={`text-7xl md:text-8xl font-bold tabular-nums transition-colors duration-500 ${
-                    score >= 80 ? 'text-gold' : 'text-weak'
-                  }`}
-                >
-                  {score}
-                </span>
-                <span className="text-2xl text-text-muted font-light">
-                  / 100
+
+              {/* rubric dimensions */}
+              {(() => {
+                const dims = [
+                  { label: 'Narrative Voice', base: 12, final: 18, max: 20 },
+                  { label: 'Specificity', base: 8, final: 19, max: 20 },
+                  { label: 'Authenticity', base: 14, final: 18, max: 20 },
+                  { label: 'Insight & Reflection', base: 10, final: 17, max: 20 },
+                  { label: 'Structure', base: 18, final: 19, max: 20 },
+                ];
+                const progress = score <= 62 ? 0 : Math.min(1, (score - 62) / (91 - 62));
+                return (
+                  <div className="space-y-4">
+                    {dims.map((d) => {
+                      const val = Math.round(d.base + (d.final - d.base) * progress);
+                      const pct = (val / d.max) * 100;
+                      const isStrong = pct >= 85;
+                      return (
+                        <div key={d.label}>
+                          <div className="flex justify-between text-sm mb-1.5">
+                            <span className="text-text/70 font-light">{d.label}</span>
+                            <span className={`tabular-nums font-medium transition-colors duration-300 ${isStrong ? 'text-gold' : 'text-text/50'}`}>
+                              {scoreOn ? val : '—'}/{d.max}
+                            </span>
+                          </div>
+                          <div className="h-2 bg-white/[0.06] rounded-full overflow-hidden">
+                            <div
+                              className={`h-full rounded-full transition-all duration-700 ease-out ${isStrong ? 'bg-gold' : 'bg-weak/60'}`}
+                              style={{ width: scoreOn ? `${pct}%` : '0%' }}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })()}
+
+              {/* overall label */}
+              <div className={`mt-5 pt-4 border-t border-white/[0.06] flex items-center justify-between transition-opacity duration-500 ${score >= 80 ? 'opacity-100' : 'opacity-40'}`}>
+                <span className="text-xs text-text-muted tracking-wide uppercase">Overall</span>
+                <span className={`text-sm font-semibold transition-colors duration-500 ${
+                  score >= 85 ? 'text-gold' : score >= 70 ? 'text-yellow-400' : 'text-weak'
+                }`}>
+                  {score >= 85 ? 'Excellent' : score >= 70 ? 'Good' : score >= 50 ? 'Needs Work' : '—'}
                 </span>
               </div>
             </div>
 
+            {/* headline + CTA below card */}
             {headline && (
-              <div className="mt-10 animate-fadeIn">
-                <p className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] tracking-tight">
+              <div className="mt-8 animate-fadeIn text-center lg:text-left">
+                <p className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-[1.1] tracking-tight">
                   Your essay.
                   <br />
                   <span className="text-gold">Perfected.</span>
                 </p>
-                <p className="text-text-muted text-base md:text-lg mt-5 max-w-sm leading-relaxed">
+                <p className="text-text-muted text-sm md:text-base mt-4 max-w-sm leading-relaxed">
                   Built by Harvard students. Powered by 100+ real T20
                   interviews.
                 </p>
                 <a
                   href="#cta"
-                  className="inline-block mt-8 bg-gold hover:bg-gold-hover text-bg px-8 py-4 rounded-xl font-semibold text-base transition-colors"
+                  className="inline-block mt-6 bg-gold hover:bg-gold-hover text-bg px-8 py-4 rounded-xl font-semibold text-base transition-colors"
                 >
                   Score My Essay — Free
                 </a>
