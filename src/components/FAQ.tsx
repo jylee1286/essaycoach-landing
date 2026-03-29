@@ -1,87 +1,96 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 
-const faqs = [
+const FAQS = [
   {
-    question: "Will this write my essay for me?",
-    answer:
-      "No. And that\u2019s the point. EssayCoach gives you expert-level feedback \u2014 the kind that a $150/hour consultant would give \u2014 but the writing is always yours. Admissions officers can tell when an essay isn\u2019t authentic. We make sure yours is.",
+    q: 'How does the scoring work?',
+    a: "Your essay is evaluated across multiple dimensions used by T20 admissions readers -- narrative strength, specificity, voice, structure, and more. Each dimension is scored individually, then combined into an overall score out of 100.",
   },
   {
-    question: "Is this cheating?",
-    answer:
-      "Getting feedback has never been cheating. Every student with access to a college counselor, tutor, or educated parent already gets their essays reviewed. EssayCoach levels the playing field.",
+    q: 'What schools are covered?',
+    a: "Our rubrics are built from interviews with students admitted to 20+ top universities including Harvard, Stanford, MIT, Yale, Princeton, and more. We also offer school-specific rubrics that account for each school's unique values and essay prompts.",
   },
   {
-    question: "Why $120/month?",
-    answer:
-      "Because $150/hour consultants charge more for less. Most students need 8\u201312 essay reviews during application season. At consultant rates, that\u2019s $1,200\u20131,800. EssayCoach gives you unlimited reviews for a fraction of the cost.",
+    q: 'Is my essay data private?',
+    a: 'Yes. Your essays are encrypted, never shared, and never used to train AI models. You can delete your data at any time.',
   },
   {
-    question: "What schools do you support?",
-    answer:
-      "We have school-specific rubrics for 200+ schools including all Ivy League, Stanford, MIT, Caltech, UChicago, Duke, and every Top 50 university. Rubrics are updated within 48 hours of new prompts being released.",
+    q: 'Can I use this for supplemental essays?',
+    a: "Absolutely. Premium users get access to school-specific rubrics for supplemental essays, including 'Why this school?' and activity essays.",
   },
   {
-    question: "How is this different from ChatGPT?",
-    answer:
-      "ChatGPT will tell you your essay is great and suggest generic improvements. EssayCoach is built on admissions-specific rubrics, trained on what actually gets students admitted, and designed to give you the honest, specific feedback that generic AI tools won\u2019t.",
+    q: 'How is this different from ChatGPT?',
+    a: "ChatGPT gives generic writing feedback. Admit Max scores your essay against rubrics built from real admissions data -- what actually worked for students who got in. We don't write your essay; we show you exactly how to make it stronger.",
+  },
+  {
+    q: 'Who built this?',
+    a: 'Admit Max was built by a team of Harvard students who conducted 100+ interviews with students admitted to T20 universities. Our rubrics are grounded in real admissions insights, not guesswork.',
   },
 ];
 
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(null);
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-24 md:py-36 px-6">
-      <div className="max-w-3xl mx-auto">
+    <section id="faq" className="py-24 md:py-32 bg-bg">
+      <div className="max-w-3xl mx-auto px-6">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+          className="text-3xl md:text-4xl font-bold text-center mb-14"
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="font-serif text-3xl md:text-4xl tracking-[-0.03em] text-text mb-12 md:mb-16"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
         >
-          Questions <em className="text-cta">&amp;</em> answers
+          Frequently Asked Questions
         </motion.h2>
 
-        <div>
-          {faqs.map(({ question, answer }, i) => (
+        <div className="space-y-3">
+          {FAQS.map((faq, i) => (
             <motion.div
               key={i}
+              className="border border-white/[0.06] rounded-xl overflow-hidden"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="border-b border-white/10"
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
             >
               <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between py-5 md:py-6 text-left group cursor-pointer"
+                className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-white/[0.02] transition-colors"
+                onClick={() => setOpenIdx(openIdx === i ? null : i)}
               >
-                <span className="text-base md:text-lg text-text group-hover:text-cta transition-colors duration-300 pr-8">
-                  {question}
+                <span className="font-medium text-sm md:text-base pr-4">
+                  {faq.q}
                 </span>
-                <span
-                  className={`text-text-muted text-xl transition-transform duration-300 shrink-0 ${open === i ? "rotate-45" : ""}`}
+                <svg
+                  className={`w-5 h-5 text-text-muted flex-shrink-0 transition-transform duration-200 ${
+                    openIdx === i ? 'rotate-180' : ''
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
                 >
-                  +
-                </span>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
               </button>
               <AnimatePresence>
-                {open === i && (
+                {openIdx === i && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
+                    animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.2 }}
                     className="overflow-hidden"
                   >
-                    <p className="pb-6 text-sm md:text-base text-text-muted leading-relaxed pr-12">
-                      {answer}
-                    </p>
+                    <div className="px-6 pb-5 text-sm text-text-muted leading-relaxed">
+                      {faq.a}
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>

@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
-import "@fontsource/playfair-display/400.css";
-import "@fontsource/playfair-display/400-italic.css";
-import "@fontsource/playfair-display/700.css";
-import "@fontsource/playfair-display/700-italic.css";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/inter/700.css";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import LenisProvider from "@/components/LenisProvider";
 
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-dm-sans",
+});
+
 export const metadata: Metadata = {
-  title: "EssayCoach — Expert College Essay Feedback",
+  title: "Admit Max — AI-Powered College Essay Coaching",
   description:
-    "Expert-level feedback on your college application essays. In minutes, not weeks.",
+    "Built by Harvard students. Powered by 100+ real T20 interviews. Get expert feedback on your college essays.",
 };
 
 export default function RootLayout({
@@ -22,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="antialiased">
+    <html lang="en" className={`antialiased ${dmSans.variable}`}>
       <body>
         <LenisProvider>{children}</LenisProvider>
       </body>

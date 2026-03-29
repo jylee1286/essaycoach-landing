@@ -1,43 +1,55 @@
-"use client";
+'use client';
 
-import { motion } from "motion/react";
+import { motion } from 'motion/react';
 
 export default function FooterCTA() {
   return (
     <>
-      <section className="py-24 md:py-36 px-6">
-        <div className="max-w-4xl mx-auto text-center">
+      {/* Final CTA */}
+      <section id="cta" className="py-24 md:py-32 bg-bg">
+        <div className="max-w-3xl mx-auto px-6 text-center">
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            className="text-4xl md:text-5xl font-bold mb-6"
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="font-serif text-4xl md:text-6xl tracking-[-0.03em] text-text"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
-            Your next draft <em className="text-cta">starts here</em>.
+            Ready to see your{' '}
+            <span className="text-gold">real score</span>?
           </motion.h2>
+          <motion.p
+            className="text-text-muted text-lg mb-10 max-w-md mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Paste your essay and get scored in under a minute. Free, no credit
+            card.
+          </motion.p>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-8"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             <a
-              href="#pricing"
-              className="inline-block bg-cta text-bg font-semibold text-lg px-8 py-4 rounded-full hover:bg-cta-hover transition-all duration-300 hover:shadow-[0_0_40px_rgba(212,168,83,0.2)]"
+              href="#"
+              className="inline-block bg-gold hover:bg-gold-hover text-bg px-10 py-4 rounded-xl font-semibold text-lg transition-colors"
             >
-              Start Free Review
+              Score My Essay — Free
             </a>
           </motion.div>
         </div>
       </section>
 
-      <footer className="border-t border-white/10 py-10 md:py-12 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <a href="#" className="font-serif italic text-lg text-text">
-            EssayCoach<span className="text-cta">.</span>
-          </a>
+      {/* Footer */}
+      <footer className="border-t border-white/[0.06] bg-bg">
+        <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-sm font-bold tracking-tight">
+            Admit&nbsp;<span className="text-gold">Max</span>
+          </div>
           <div className="flex items-center gap-6 text-sm text-text-muted">
             <a href="#" className="hover:text-text transition-colors">
               Privacy
@@ -49,9 +61,9 @@ export default function FooterCTA() {
               Contact
             </a>
           </div>
-          <p className="text-xs text-text-muted/60">
-            &copy; 2026 EssayCoach. All rights reserved.
-          </p>
+          <div className="text-xs text-text-muted">
+            &copy; 2026 Admit Max. All rights reserved.
+          </div>
         </div>
       </footer>
     </>

@@ -1,17 +1,14 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-bg: #0A0A12;
-  --color-bg-light: #12121E;
+  --color-bg: #0D1117;
+  --color-bg-alt: #1A1F2E;
   --color-text: #F5F5F0;
   --color-text-muted: #8A8A96;
-  --color-strength: #4ADE80;
-  --color-suggestion: #FBBF24;
-  --color-issue: #F87171;
-  --color-cta: #D4A853;
-  --color-cta-hover: #E5BD6A;
-  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-gold: #D4A853;
+  --color-gold-hover: #E5BD6A;
+  --color-weak: #E85D5D;
+  --font-sans: var(--font-dm-sans, 'DM Sans'), system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
 }
 
@@ -28,4 +25,22 @@ body {
 ::selection {
   background-color: rgba(212, 168, 83, 0.3);
   color: var(--color-text);
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 0.8s step-end infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.7s ease-out both;
 }
