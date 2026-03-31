@@ -9,6 +9,7 @@
   --color-gold-hover: #E5BD6A;
   --color-weak: #E85D5D;
   --font-sans: var(--font-inter, 'Inter'), system-ui, -apple-system, sans-serif;
+  --font-pixel: var(--font-press-start, 'Press Start 2P'), monospace;
   --color-cta: #D4A853;
   --color-cta-hover: #E5BD6A;
   --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
@@ -22,6 +23,11 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
+  cursor: crosshair;
+}
+
+a, button {
+  cursor: pointer;
 }
 
 ::selection {
@@ -29,6 +35,117 @@ body {
   color: var(--color-text);
 }
 
+/* ── Y2K scanline overlay ──────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+}
+
+/* ── Y2K grid dots background ──────────────────────────── */
+.y2k-dots {
+  background-image: radial-gradient(circle, rgba(212, 168, 83, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ── Retro window frame ────────────────────────────────── */
+.retro-window {
+  border: 2px solid rgba(212, 168, 83, 0.3);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  background: var(--color-bg-alt);
+}
+
+.retro-window-light {
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  background: var(--color-bg-alt);
+}
+
+.retro-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-bottom: 2px solid rgba(212, 168, 83, 0.2);
+  background: rgba(212, 168, 83, 0.06);
+}
+
+.retro-titlebar-light {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.retro-btn {
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid;
+}
+
+.retro-btn-close { border-color: #FF5F57; background: #FF5F57; }
+.retro-btn-min { border-color: #FFBD2E; background: #FFBD2E; }
+.retro-btn-max { border-color: #28CA41; background: #28CA41; }
+
+/* ── Retro beveled button ──────────────────────────────── */
+.retro-button {
+  font-family: var(--font-pixel);
+  border: 2px solid var(--color-gold);
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.6), inset 1px 1px 0px rgba(255, 255, 255, 0.1);
+  transition: all 0.1s;
+}
+
+.retro-button:hover {
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.6), inset 1px 1px 0px rgba(255, 255, 255, 0.1);
+  transform: translate(2px, 2px);
+}
+
+.retro-button:active {
+  box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.3);
+  transform: translate(3px, 3px);
+}
+
+.retro-button-outline {
+  font-family: var(--font-pixel);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.4);
+  transition: all 0.1s;
+}
+
+.retro-button-outline:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.4);
+  transform: translate(2px, 2px);
+}
+
+/* ── Rotating star ─────────────────────────────────────── */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.star-spin {
+  display: inline-block;
+  animation: spin-slow 4s linear infinite;
+}
+
+/* ── Pixel font utility ────────────────────────────────── */
+.font-pixel {
+  font-family: var(--font-pixel);
+}
+
+/* ── Existing animations ───────────────────────────────── */
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
@@ -55,4 +172,15 @@ body {
 @keyframes marquee-right {
   from { transform: translateX(-50%); }
   to { transform: translateX(0); }
+}
+
+/* ── Flicker for retro terminal ────────────────────────── */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.97; }
+  25%, 75% { opacity: 0.99; }
+}
+
+.retro-flicker {
+  animation: flicker 3s ease-in-out infinite;
 }

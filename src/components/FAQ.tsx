@@ -36,72 +36,91 @@ export default function FAQ() {
   return (
     <section id="faq" className="py-14 md:py-20 bg-bg">
       <div className="max-w-5xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold mb-14">
+        <h2 className="text-3xl md:text-4xl font-bold mb-3">
           You&apos;re probably wondering...
         </h2>
+        <p className="font-pixel text-[8px] text-text-muted mb-14 tracking-wider">
+          &#128193; C:\ADMITMAX\FAQ\
+        </p>
 
         <div className="flex flex-col md:flex-row gap-10 items-start">
-          {/* Questions — 70% */}
-          <div className="flex-1 space-y-3">
-            {FAQS.map((faq, i) => (
-              <div
-                key={i}
-                className="border border-white/[0.06] rounded-xl overflow-hidden"
-              >
-                <button
-                  className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-white/[0.02] transition-colors"
-                  onClick={() => setOpenIdx(openIdx === i ? null : i)}
-                >
-                  <span className="font-medium text-sm md:text-base pr-4">
-                    {faq.q}
-                  </span>
-                  <svg
-                    className={`w-5 h-5 text-text-muted flex-shrink-0 transition-transform duration-200 ${
-                      openIdx === i ? 'rotate-180' : ''
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-                <AnimatePresence>
-                  {openIdx === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-5 text-sm text-text-muted leading-relaxed">
-                        {faq.a}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+          {/* Questions — file explorer style */}
+          <div className="flex-1">
+            <div className="retro-window-light">
+              <div className="retro-titlebar-light">
+                <div className="retro-btn retro-btn-close" />
+                <div className="retro-btn retro-btn-min" />
+                <div className="retro-btn retro-btn-max" />
+                <span className="ml-2 font-pixel text-[7px] text-text-muted">
+                  faq_explorer.exe
+                </span>
               </div>
-            ))}
+
+              <div className="divide-y-2 divide-white/[0.04]">
+                {FAQS.map((faq, i) => (
+                  <div key={i}>
+                    <button
+                      className="w-full flex items-center gap-3 px-5 py-4 text-left hover:bg-white/[0.02] transition-colors"
+                      onClick={() => setOpenIdx(openIdx === i ? null : i)}
+                    >
+                      {/* Folder/file icon */}
+                      <span className="font-pixel text-[10px] text-gold flex-shrink-0">
+                        {openIdx === i ? '&#128194;' : '&#128193;'}
+                      </span>
+                      <span className="font-medium text-sm md:text-base flex-1 pr-4">
+                        {faq.q}
+                      </span>
+                      <span className={`font-pixel text-[8px] text-text-muted flex-shrink-0 transition-transform duration-200 ${
+                        openIdx === i ? 'rotate-90' : ''
+                      }`}>
+                        &#9654;
+                      </span>
+                    </button>
+                    <AnimatePresence>
+                      {openIdx === i && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-5 pb-4 pl-12 text-sm text-text-muted leading-relaxed border-l-2 border-gold/20 ml-5">
+                            {faq.a}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* Sidebar — 30% */}
-          <div className="md:sticky md:top-24 w-full md:w-72 flex-shrink-0 border border-gold/20 rounded-2xl p-6 bg-bg-alt/40">
-            <h3 className="font-semibold text-base mb-2">Still have questions?</h3>
-            <p className="text-text-muted text-sm leading-relaxed">
-              Email us at{' '}
-              <a
-                href="mailto:hello@admitmax.com"
-                className="text-gold hover:text-gold-hover transition-colors"
-              >
-                hello@admitmax.com
-              </a>
-            </p>
+          {/* Sidebar — retro dialog */}
+          <div className="md:sticky md:top-24 w-full md:w-72 flex-shrink-0">
+            <div className="retro-window">
+              <div className="retro-titlebar">
+                <div className="retro-btn retro-btn-close" />
+                <div className="retro-btn retro-btn-min" />
+                <div className="retro-btn retro-btn-max" />
+                <span className="ml-2 font-pixel text-[7px] text-text-muted">
+                  help.txt
+                </span>
+              </div>
+              <div className="p-6">
+                <h3 className="font-semibold text-base mb-2">Still have questions?</h3>
+                <p className="text-text-muted text-sm leading-relaxed">
+                  Email us at{' '}
+                  <a
+                    href="mailto:hello@admitmax.com"
+                    className="text-gold hover:text-gold-hover transition-colors"
+                  >
+                    hello@admitmax.com
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

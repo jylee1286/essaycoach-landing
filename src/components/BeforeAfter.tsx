@@ -51,7 +51,7 @@ export default function BeforeAfter() {
     <section className="py-20 md:py-28 bg-bg">
       <div className="max-w-5xl mx-auto px-6">
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-4"
+          className="text-3xl md:text-4xl font-bold text-center mb-2"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -70,12 +70,22 @@ export default function BeforeAfter() {
 
         <motion.div
           ref={containerRef}
-          className="relative border border-white/[0.06] rounded-2xl overflow-hidden select-none touch-none"
+          className="relative retro-window overflow-hidden select-none touch-none"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
+          {/* Shared titlebar */}
+          <div className="retro-titlebar">
+            <div className="retro-btn retro-btn-close" />
+            <div className="retro-btn retro-btn-min" />
+            <div className="retro-btn retro-btn-max" />
+            <span className="ml-3 font-pixel text-[8px] text-text-muted">
+              compare_essays.diff
+            </span>
+          </div>
+
           <div className="flex" style={{ minHeight: 320 }}>
             {/* Before */}
             <div
@@ -84,7 +94,7 @@ export default function BeforeAfter() {
             >
               <div className="p-6 md:p-8" style={{ minWidth: 340 }}>
                 <div className="flex items-center justify-between mb-5">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-weak">
+                  <span className="font-pixel text-[9px] uppercase tracking-wider text-weak">
                     Before
                   </span>
                   <span className="text-4xl font-bold text-weak">62</span>
@@ -111,7 +121,7 @@ export default function BeforeAfter() {
               className="w-0.5 bg-gold/60 relative z-10 flex-shrink-0 cursor-col-resize"
               onPointerDown={startDrag}
             >
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-gold flex items-center justify-center shadow-lg shadow-black/30">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-gold flex items-center justify-center border-2 border-gold-hover shadow-[3px_3px_0px_rgba(0,0,0,0.5)]">
                 <svg
                   width="12"
                   height="12"
@@ -140,7 +150,7 @@ export default function BeforeAfter() {
             <div className="overflow-hidden flex-1 bg-bg-alt">
               <div className="p-6 md:p-8" style={{ minWidth: 340 }}>
                 <div className="flex items-center justify-between mb-5">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-gold">
+                  <span className="font-pixel text-[9px] uppercase tracking-wider text-gold">
                     After
                   </span>
                   <span className="text-4xl font-bold text-gold">91</span>

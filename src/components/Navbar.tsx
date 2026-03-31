@@ -15,27 +15,39 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-bg/95 backdrop-blur-md border-b border-white/5' : ''
+        scrolled
+          ? 'bg-bg/95 backdrop-blur-md border-b-2 border-gold/20'
+          : 'border-b-2 border-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="text-xl font-bold tracking-tight">
+      <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+        <a href="#" className="flex items-center gap-2 text-xl font-bold tracking-tight">
+          <span className="text-gold star-spin text-xs">&#10022;</span>
           Admit&nbsp;<span className="text-gold">Max</span>
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
-          <a href="#how-it-works" className="text-sm text-text-muted hover:text-text transition-colors">
+        <div className="hidden md:flex items-center gap-1">
+          <a
+            href="#how-it-works"
+            className="font-pixel text-[9px] text-text-muted hover:text-gold hover:bg-white/[0.03] px-3 py-2 transition-colors border-r border-white/[0.06]"
+          >
             How It Works
           </a>
-          <a href="#pricing" className="text-sm text-text-muted hover:text-text transition-colors">
+          <a
+            href="#pricing"
+            className="font-pixel text-[9px] text-text-muted hover:text-gold hover:bg-white/[0.03] px-3 py-2 transition-colors border-r border-white/[0.06]"
+          >
             Pricing
           </a>
-          <a href="#faq" className="text-sm text-text-muted hover:text-text transition-colors">
+          <a
+            href="#faq"
+            className="font-pixel text-[9px] text-text-muted hover:text-gold hover:bg-white/[0.03] px-3 py-2 transition-colors border-r border-white/[0.06]"
+          >
             FAQ
           </a>
           <a
             href="#cta"
-            className="bg-gold hover:bg-gold-hover text-bg text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors"
+            className="retro-button bg-gold hover:bg-gold-hover text-bg font-pixel text-[9px] px-4 py-2 ml-2"
           >
             Score My Essay
           </a>
@@ -60,20 +72,20 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <div className="md:hidden bg-bg/95 backdrop-blur-md border-t border-white/5 px-6 py-5 flex flex-col gap-4">
-          <a href="#how-it-works" onClick={() => setOpen(false)} className="text-text-muted hover:text-text transition-colors">
+        <div className="md:hidden bg-bg/95 backdrop-blur-md border-t-2 border-gold/20 px-6 py-5 flex flex-col gap-4">
+          <a href="#how-it-works" onClick={() => setOpen(false)} className="font-pixel text-[9px] text-text-muted hover:text-gold transition-colors">
             How It Works
           </a>
-          <a href="#pricing" onClick={() => setOpen(false)} className="text-text-muted hover:text-text transition-colors">
+          <a href="#pricing" onClick={() => setOpen(false)} className="font-pixel text-[9px] text-text-muted hover:text-gold transition-colors">
             Pricing
           </a>
-          <a href="#faq" onClick={() => setOpen(false)} className="text-text-muted hover:text-text transition-colors">
+          <a href="#faq" onClick={() => setOpen(false)} className="font-pixel text-[9px] text-text-muted hover:text-gold transition-colors">
             FAQ
           </a>
           <a
             href="#cta"
             onClick={() => setOpen(false)}
-            className="bg-gold text-bg text-sm font-semibold px-5 py-2.5 rounded-lg text-center transition-colors"
+            className="retro-button bg-gold text-bg font-pixel text-[9px] px-5 py-2.5 text-center"
           >
             Score My Essay
           </a>
