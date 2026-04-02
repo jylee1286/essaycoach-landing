@@ -1,90 +1,39 @@
+'use client';
+
 const TESTIMONIALS = [
   {
+    quote: "I rewrote my Common App essay three times before using Admit Max. The scoring rubric showed me exactly why my opening wasn't landing. Got in ED.",
     name: 'Sarah K.',
-    school: 'Stanford',
-    year: "'26",
-    handle: 'sarah_k_26',
-    quote:
-      "I rewrote my Common App essay three times before using Admit Max. The scoring rubric showed me exactly why my opening wasn't landing. Got in ED.",
+    school: 'Duke \'30',
   },
   {
+    quote: "My counselor said my essay was 'fine.' Admit Max showed me fine wasn't enough. The line-by-line feedback transformed my supplementals.",
     name: 'Marcus T.',
-    school: 'UPenn',
-    year: "'26",
-    handle: 'marcus_t_26',
-    quote:
-      "My counselor said my essay was 'fine.' Admit Max showed me fine wasn't enough. The line-by-line feedback transformed my supplementals.",
+    school: 'Stanford \'30',
   },
   {
+    quote: "The personalization feature matched my experiences to specific school prompts I hadn't even considered. Game changer for supplements.",
     name: 'Priya R.',
-    school: 'MIT',
-    year: "'27",
-    handle: 'priya_r_27',
-    quote:
-      'The school-specific rubrics are what set this apart. My MIT essay was completely different from my Harvard one, and it should be.',
+    school: 'MIT \'30',
   },
 ];
 
-function IMWindow({ t, featured }: { t: typeof TESTIMONIALS[number]; featured?: boolean }) {
-  return (
-    <div className="retro-window-light h-full flex flex-col">
-      {/* IM titlebar */}
-      <div className="retro-titlebar-light">
-        <div className="retro-btn retro-btn-close" />
-        <div className="retro-btn retro-btn-min" />
-        <div className="retro-btn retro-btn-max" />
-        <span className="ml-2 font-pixel text-[7px] text-text-muted truncate">
-          {t.handle} — instant message
-        </span>
-      </div>
-
-      <div className={`${featured ? 'p-8 md:p-10' : 'p-6'} flex-1 flex flex-col`}>
-        {/* Chat bubble */}
-        <div className="flex-1">
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-6 h-6 bg-gold/20 border border-gold/30 flex items-center justify-center font-pixel text-[7px] text-gold">
-              {t.name[0]}
-            </div>
-            <span className="font-pixel text-[7px] text-gold">{t.handle}</span>
-            <span className="font-pixel text-[6px] text-text-muted">now</span>
-          </div>
-          <p className={`${featured ? 'text-lg md:text-xl' : 'text-sm'} leading-relaxed text-text/85 ml-8`}>
-            {t.quote}
-          </p>
-        </div>
-
-        {/* User info footer */}
-        <div className="mt-5 pt-3 border-t-2 border-dashed border-white/[0.06]">
-          <div className={`${featured ? 'font-semibold' : 'text-sm font-semibold'}`}>{t.name}</div>
-          <div className="text-xs text-gold mt-0.5 font-pixel text-[7px]">
-            {t.school} {t.year}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function SocialProof() {
   return (
-    <section className="py-20 md:py-28 bg-bg">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold mb-3">
-          Don&apos;t take our word for it.
+    <section className="py-24 bg-white">
+      <div className="max-w-4xl mx-auto px-6">
+        <h2 className="text-3xl md:text-4xl font-bold text-text text-center mb-12">
+          What Students Say
         </h2>
-        <p className="font-pixel text-[8px] text-text-muted mb-14 tracking-wider">
-          &#10022; USER_TESTIMONIALS.log &#10022;
-        </p>
-
-        {/* Featured large testimonial */}
-        <div className="mb-6">
-          <IMWindow t={TESTIMONIALS[0]} featured />
-        </div>
-
-        {/* Two smaller testimonials */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {TESTIMONIALS.slice(1).map((t) => (
-            <IMWindow key={t.name} t={t} />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {TESTIMONIALS.map((t, i) => (
+            <div key={i} className="bg-bg rounded-xl p-6 border border-gray-100">
+              <p className="text-sm text-text leading-relaxed mb-4">&ldquo;{t.quote}&rdquo;</p>
+              <div>
+                <p className="text-sm font-semibold text-text">{t.name}</p>
+                <p className="text-xs text-accent font-medium">{t.school}</p>
+              </div>
+            </div>
           ))}
         </div>
       </div>

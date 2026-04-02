@@ -1,24 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Press_Start_2P } from "next/font/google";
 import "./globals.css";
-import LenisProvider from "@/components/LenisProvider";
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-inter",
-});
-
-const pressStart = Press_Start_2P({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-press-start",
-});
 
 export const metadata: Metadata = {
   title: "Admit Max — AI-Powered College Essay Coaching",
-  description:
-    "Built by Harvard students. Powered by 100+ real T20 interviews. Get expert feedback on your college essays.",
+  description: "Score your college essays against real admissions rubrics. Built from 100+ interviews with students admitted to T20 universities.",
 };
 
 export default function RootLayout({
@@ -27,9 +12,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`antialiased ${inter.variable} ${pressStart.variable}`}>
-      <body className="y2k-dots">
-        <LenisProvider>{children}</LenisProvider>
+    <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+      </head>
+      <body className="antialiased">
+        {children}
       </body>
     </html>
   );

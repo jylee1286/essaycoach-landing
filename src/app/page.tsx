@@ -1,29 +1,27 @@
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
+import ScrollHero from "@/components/ScrollHero";
 import HowItWorks from "@/components/HowItWorks";
-import BeforeAfter from "@/components/BeforeAfter";
 import SchoolCoverage from "@/components/SchoolCoverage";
 import SocialProof from "@/components/SocialProof";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
-import Credibility from "@/components/Credibility";
-import FooterCTA from "@/components/FooterCTA";
+import Waitlist from "@/components/Waitlist";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <>
       <Navbar />
       <main>
-        <Hero />
+        <ScrollHero />
         <HowItWorks />
-        <BeforeAfter />
         <SchoolCoverage />
         <SocialProof />
         <Pricing />
         <FAQ />
-        <Credibility />
-        <FooterCTA />
+        <Waitlist />
       </main>
+      <Footer />
     </>
   );
 }

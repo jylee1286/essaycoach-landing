@@ -1,53 +1,45 @@
+'use client';
+
 const STEPS = [
   {
     num: '01',
     title: 'Paste your essay',
-    desc: 'Drop in your Common App, supplemental, or any college essay draft.',
-    file: 'essay_input.exe',
+    desc: 'Drop in your Common App, supplemental, or any college essay. No signup required for your first 2 reviews.',
+    icon: '📝',
   },
   {
     num: '02',
-    title: 'Get scored against T20 rubrics',
-    desc: 'Our rubrics are built from 100+ real interviews with students admitted to top schools.',
-    file: 'rubric_engine.dll',
+    title: 'Get scored instantly',
+    desc: 'Our AI scores your essay against rubrics built from real admissions data — what actually worked for students who got in.',
+    icon: '📊',
   },
   {
     num: '03',
-    title: 'Improve with AI feedback',
-    desc: 'Line-by-line annotations show you exactly what to fix and why.',
-    file: 'feedback_v3.sys',
+    title: 'Rewrite with precision',
+    desc: 'Line-by-line feedback shows exactly what to fix. Your words, your voice — just sharper.',
+    icon: '✨',
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-16 md:py-24 bg-bg-alt">
+    <section id="how-it-works" className="py-24 bg-white">
       <div className="max-w-4xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold mb-3">
-          Three steps. That&apos;s it.
+        <h2 className="text-3xl md:text-4xl font-bold text-text text-center mb-4">
+          How It Works
         </h2>
-        <p className="font-pixel text-[8px] text-text-muted mb-14 tracking-wider">
-          &#10022; PROCESS_OVERVIEW.exe &#10022;
+        <p className="text-muted text-center mb-16 max-w-xl mx-auto">
+          Three steps to an essay that stands out.
         </p>
-
-        <div className="grid gap-6 md:grid-cols-3">
-          {STEPS.map((step) => (
-            <div key={step.num} className="retro-window">
-              <div className="retro-titlebar">
-                <div className="retro-btn retro-btn-close" />
-                <div className="retro-btn retro-btn-min" />
-                <div className="retro-btn retro-btn-max" />
-                <span className="ml-2 font-pixel text-[7px] text-text-muted truncate">
-                  {step.file}
-                </span>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {STEPS.map((step, i) => (
+            <div key={i} className="text-center">
+              <div className="text-4xl mb-4">{step.icon}</div>
+              <div className="text-xs font-bold text-accent uppercase tracking-widest mb-2">
+                Step {step.num}
               </div>
-              <div className="p-6">
-                <span className="font-pixel text-[28px] md:text-[32px] text-gold/25 leading-none block mb-3">
-                  {step.num}
-                </span>
-                <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-                <p className="text-text-muted text-sm leading-relaxed">{step.desc}</p>
-              </div>
+              <h3 className="text-lg font-semibold text-text mb-2">{step.title}</h3>
+              <p className="text-sm text-muted leading-relaxed">{step.desc}</p>
             </div>
           ))}
         </div>
