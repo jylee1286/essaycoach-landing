@@ -14,19 +14,175 @@
   --color-yellow: #CA8A04;
   --color-yellow-light: #FEF9C3;
   --color-gold: #B8860B;
+
+  /* Typography — Apple.com spec
+     SF Pro Text/Display render natively on Apple devices (free, system font).
+     Inter is the closest metric-compatible Google fallback for everyone else.
+     Helvetica Neue is the legacy fallback Apple themselves use. */
   --font-serif: 'Georgia', 'Times New Roman', serif;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Inter", Helvetica, Arial, sans-serif;
+  --font-display: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Inter", Helvetica, Arial, sans-serif;
 }
 
+/* Apple bumps root to 106.25% so 1rem = 17px (base 16 × 1.0625) */
 html {
   scroll-behavior: smooth;
+  font-size: 106.25%;
 }
 
+/* Apple body defaults: 17px / 1.47 / weight 400 / tracking -0.022em */
 body {
   font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.4705882353;
+  font-weight: 400;
+  letter-spacing: -0.022em;
   background: var(--color-bg);
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv11";
+}
+
+/* Apple headline baseline:
+   - SF Pro Display (swap from Text at 20px+)
+   - Weight 600 (Apple's signature — not 700)
+   - Tight line-height 1.1 — monumental feel
+   - Gentle negative tracking for optical correction
+   Tailwind utility classes (text-5xl, font-bold, leading-*, tracking-*) still win
+   on specificity, so components keep their existing size/weight when they set them. */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.003em;
+  color: var(--color-text);
+}
+
+/* ────────────────────────────────────────────────────────────
+   Apple typography utility classes — exact spec from apple.com
+   Use e.g. <h1 className="type-tile-headline"> to get pixel-perfect
+   Apple metrics at all three breakpoints (734px, 1068px).
+   Breakpoints match Apple exactly, not Tailwind's defaults.
+   ──────────────────────────────────────────────────────────── */
+
+.type-headline {
+  font-family: var(--font-display);
+  font-size: 48px;
+  line-height: 1.0834933333;
+  font-weight: 600;
+  letter-spacing: -0.002em;
+}
+@media (max-width: 1068px) {
+  .type-headline { font-size: 40px; line-height: 1.1; letter-spacing: 0em; }
+}
+@media (max-width: 734px) {
+  .type-headline { font-size: 32px; line-height: 1.125; letter-spacing: 0.002em; }
+}
+
+.type-tile-headline {
+  font-family: var(--font-display);
+  font-size: 56px;
+  line-height: 1.0714285714;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+@media (max-width: 1068px) {
+  .type-tile-headline { font-size: 48px; line-height: 1.0834933333; letter-spacing: -0.002em; }
+}
+@media (max-width: 734px) {
+  .type-tile-headline { font-size: 32px; line-height: 1.125; letter-spacing: 0.002em; }
+}
+
+.type-callout {
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 1.125;
+  font-weight: 600;
+  letter-spacing: 0.002em;
+}
+@media (max-width: 1068px) {
+  .type-callout { font-size: 28px; line-height: 1.1428571429; letter-spacing: 0.007em; }
+}
+@media (max-width: 734px) {
+  .type-callout { font-size: 24px; line-height: 1.1666666667; letter-spacing: 0.009em; }
+}
+
+.type-promo-headline {
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: 0em;
+}
+@media (max-width: 1068px) {
+  .type-promo-headline { font-size: 32px; line-height: 1.125; letter-spacing: 0.002em; }
+}
+
+.type-promo-subhead {
+  font-family: var(--font-display);
+  font-size: 21px;
+  line-height: 1.1904761905;
+  font-weight: 400;
+  letter-spacing: 0.011em;
+}
+@media (max-width: 1068px) {
+  .type-promo-subhead { font-size: 19px; line-height: 1.2105263158; letter-spacing: 0.012em; }
+}
+
+.type-tile-subhead {
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1.1428571429;
+  font-weight: 400;
+  letter-spacing: 0.007em;
+}
+@media (max-width: 1068px) {
+  .type-tile-subhead { font-size: 24px; line-height: 1.1666666667; letter-spacing: 0.009em; }
+}
+@media (max-width: 734px) {
+  .type-tile-subhead { font-size: 19px; line-height: 1.2105263158; letter-spacing: 0.012em; }
+}
+
+.type-body {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.4705882353;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+}
+
+.type-body-reduced {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.4285914286;
+  font-weight: 400;
+  letter-spacing: -0.016em;
+}
+
+.type-caption {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.3333733333;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.type-button {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.2857742857;
+  font-weight: 400;
+  letter-spacing: -0.016em;
+}
+
+.type-button-super {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.1764805882;
+  font-weight: 400;
+  letter-spacing: -0.022em;
 }
 
 /* Scroll hero needs full viewport height per scene */
@@ -34,7 +190,7 @@ body {
   position: relative;
 }
 
-/* Essay editor styling */
+/* Essay editor styling — intentional serif for rendered student essays */
 .essay-editor {
   font-family: var(--font-serif);
   line-height: 1.8;
